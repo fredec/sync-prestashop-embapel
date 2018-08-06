@@ -1,0 +1,927 @@
+object Form1: TForm1
+  Left = 454
+  Height = 394
+  Top = 121
+  Width = 394
+  Caption = 'Form1'
+  ClientHeight = 394
+  ClientWidth = 394
+  OnCreate = FormCreate
+  LCLVersion = '1.8.4.0'
+  object edtData: TEdit
+    Left = 88
+    Height = 23
+    Top = 72
+    Width = 103
+    TabOrder = 0
+  end
+  object Label1: TLabel
+    Left = 16
+    Height = 15
+    Top = 80
+    Width = 58
+    Caption = 'Data Inicial'
+    ParentColor = False
+    OnClick = Label1Click
+  end
+  object lblStatus1: TLabel
+    Left = 16
+    Height = 15
+    Top = 160
+    Width = 38
+    Caption = 'Status1'
+    ParentColor = False
+    OnClick = Label1Click
+  end
+  object lblStatus2: TLabel
+    Left = 16
+    Height = 15
+    Top = 184
+    Width = 38
+    Caption = 'Status2'
+    ParentColor = False
+    OnClick = Label1Click
+  end
+  object btnFilter1: TButton
+    Left = 16
+    Height = 25
+    Top = 128
+    Width = 147
+    Caption = 'Exportar para arquivo'
+    OnClick = btnFilter1Click
+    TabOrder = 2
+  end
+  object btnUpdate: TButton
+    Left = 16
+    Height = 25
+    Top = 208
+    Width = 147
+    Caption = 'Atualizar site'
+    Enabled = False
+    OnClick = btnUpdateClick
+    TabOrder = 3
+  end
+  object Button1: TButton
+    Left = 280
+    Height = 25
+    Top = 288
+    Width = 75
+    Caption = 'Get'
+    TabOrder = 4
+    Visible = False
+  end
+  object Button2: TButton
+    Left = 280
+    Height = 25
+    Top = 352
+    Width = 75
+    Caption = 'Create XML'
+    TabOrder = 5
+    Visible = False
+  end
+  object Button3: TButton
+    Left = 280
+    Height = 25
+    Top = 320
+    Width = 75
+    Caption = 'Put'
+    TabOrder = 6
+    Visible = False
+  end
+  object edtKey: TEdit
+    Left = 40
+    Height = 23
+    Top = 16
+    Width = 312
+    TabOrder = 7
+    Text = 'V3QI3RV337NWMD9AJ7H8EX24ZC2FXK7G'
+  end
+  object Key: TLabel
+    Left = 16
+    Height = 15
+    Top = 16
+    Width = 19
+    Caption = 'Key'
+    ParentColor = False
+  end
+  object Key1: TLabel
+    Left = 16
+    Height = 15
+    Top = 48
+    Width = 46
+    Caption = 'Domínio'
+    ParentColor = False
+  end
+  object edtDomain: TEdit
+    Left = 72
+    Height = 23
+    Top = 44
+    Width = 281
+    TabOrder = 8
+    Text = 'http://embapel.minicommerce.com.br'
+  end
+  object lblStatus3: TLabel
+    Left = 16
+    Height = 15
+    Top = 248
+    Width = 38
+    Caption = 'Status3'
+    ParentColor = False
+    OnClick = Label1Click
+  end
+  object lblStatus4: TLabel
+    Left = 16
+    Height = 15
+    Top = 296
+    Width = 38
+    Caption = 'Status4'
+    ParentColor = False
+    OnClick = Label1Click
+  end
+  object lblStatus6: TLabel
+    Left = 16
+    Height = 15
+    Top = 272
+    Width = 38
+    Caption = 'Status6'
+    ParentColor = False
+    OnClick = Label1Click
+  end
+  object lblStatus7: TLabel
+    Left = 16
+    Height = 15
+    Top = 360
+    Width = 85
+    Caption = 'Novos produtos'
+    ParentColor = False
+    OnClick = Label1Click
+  end
+  object lblStatus8: TLabel
+    Left = 16
+    Height = 15
+    Top = 320
+    Width = 38
+    Caption = 'Status5'
+    ParentColor = False
+    OnClick = Label1Click
+  end
+  object Label2: TLabel
+    Left = 16
+    Height = 15
+    Top = 104
+    Width = 52
+    Caption = 'Data Final'
+    ParentColor = False
+    OnClick = Label1Click
+  end
+  object edtDataFinal: TEdit
+    Left = 88
+    Height = 23
+    Top = 100
+    Width = 103
+    TabOrder = 1
+  end
+  object dbAccess: TODBCConnection
+    Connected = False
+    LoginPrompt = False
+    DatabaseName = 'Dadoss'
+    KeepConnection = False
+    Password = 'TEMPORADA'
+    Transaction = SQLTransaction1
+    UserName = 'admin'
+    left = 184
+    top = 104
+  end
+  object SQLTransaction1: TSQLTransaction
+    Active = False
+    Database = dbAccess
+    left = 240
+    top = 272
+  end
+  object SQLFilial: TSQLQuery
+    FieldDefs = <    
+      item
+        Name = 'empresa_fil'
+        DataType = ftSmallint
+        Precision = -1
+      end    
+      item
+        Name = 'prod_fil'
+        DataType = ftString
+        Precision = -1
+        Size = 6
+      end    
+      item
+        Name = 'qtd_fil'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'med_fil'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'min_fil'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'Export'
+        DataType = ftString
+        Precision = -1
+        Size = 1
+      end>
+    Database = dbAccess
+    Transaction = SQLTransaction1
+    SQL.Strings = (
+      'select * from estfilial'
+    )
+    Params = <>
+    UsePrimaryKeyAsKey = False
+    left = 240
+    top = 160
+  end
+  object SQLEstoqueSyncTudo: TSQLQuery
+    FieldDefs = <    
+      item
+        Name = 'COD_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 6
+      end    
+      item
+        Name = 'DESC_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 40
+      end    
+      item
+        Name = 'CLASSIF_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 5
+      end    
+      item
+        Name = 'FABRIC_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 3
+      end    
+      item
+        Name = 'UND_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 2
+      end    
+      item
+        Name = 'EMBAL_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'MASTER_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'MIN_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'MAX_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'EST_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'PRAT_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'PESO_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'QTE_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'QANT_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'CUSTO_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'CUSMED_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'MEDIO_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'VENDA_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'INCUSTO_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'INDICE_E'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'INVENDA_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'FORNEC1_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 6
+      end    
+      item
+        Name = 'ULTCOM1_ES'
+        DataType = ftDateTime
+        Precision = -1
+      end    
+      item
+        Name = 'FORNEC2_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 6
+      end    
+      item
+        Name = 'ULTCOM2_ES'
+        DataType = ftDateTime
+        Precision = -1
+      end    
+      item
+        Name = 'FORNEC3_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 6
+      end    
+      item
+        Name = 'ULTCOM3_ES'
+        DataType = ftDateTime
+        Precision = -1
+      end    
+      item
+        Name = 'ULTVENDA_E'
+        DataType = ftDateTime
+        Precision = -1
+      end    
+      item
+        Name = 'PR_QTE_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'PR_ANT_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'EN_QTE_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'EN_ANT_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'PEN_QTE_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'PR_VENDA_E'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'PRVEN2_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'PRVEN3_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'PRVEN4_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'PR_PROM_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'AN_QTE_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'AN_ANT_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'SD_QTE_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'SD_ANT_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'ED_QTE_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'ED_ANT_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'SITUACAO_E'
+        DataType = ftString
+        Precision = -1
+        Size = 1
+      end    
+      item
+        Name = 'DESCONTO_E'
+        DataType = ftString
+        Precision = -1
+        Size = 3
+      end    
+      item
+        Name = 'COM_AV_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'COM_AP_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'CHAVEGE_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 1
+      end    
+      item
+        Name = 'CHAVEGR_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 1
+      end    
+      item
+        Name = 'CHAVEDI_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 1
+      end    
+      item
+        Name = 'CHAVEFA_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 1
+      end    
+      item
+        Name = 'DATA_ES'
+        DataType = ftDateTime
+        Precision = -1
+      end    
+      item
+        Name = 'CODTRIB_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 2
+      end    
+      item
+        Name = 'DTCAD_ES'
+        DataType = ftDateTime
+        Precision = -1
+      end    
+      item
+        Name = 'ENTREGA_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 5
+      end    
+      item
+        Name = 'LUCRO_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'CODFABRI_E'
+        DataType = ftString
+        Precision = -1
+        Size = 16
+      end    
+      item
+        Name = 'CODTRANS_E'
+        DataType = ftString
+        Precision = -1
+        Size = 6
+      end    
+      item
+        Name = 'VRIPI_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'VRFRETE_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'VRFINAN_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'VRDESC_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'GRUPO_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'VRICMS_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'SAI_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 1
+      end    
+      item
+        Name = 'CST_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'CUSTOB_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'ALTER_ES'
+        DataType = ftDateTime
+        Precision = -1
+      end    
+      item
+        Name = 'CODST_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'CODTRIB1_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 2
+      end    
+      item
+        Name = 'VLRCOM1_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'VLRCOM2_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'VLRCOM3_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'IPI_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'PEREDZ_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'CPISCOF_ES'
+        DataType = ftSmallint
+        Precision = -1
+      end    
+      item
+        Name = 'GRADE_ES'
+        DataType = ftSmallint
+        Precision = -1
+      end    
+      item
+        Name = 'RETORNO_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 1
+      end    
+      item
+        Name = 'MARGAPU_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'MEDIOBK_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'CUSTOBK_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'MEDANT_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'DIAS_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 3
+      end    
+      item
+        Name = 'VRSUBS_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'CUSAPU_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'FINAN_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'ITEM_ES'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'CODFIS_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 15
+      end    
+      item
+        Name = 'SEGURO_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'DESPI_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'ALIQAN_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'CODEMB_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'CODMAS_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'CODFAB_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'MAGMIN_ES'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'CODORIG_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 15
+      end    
+      item
+        Name = 'CODREFE_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 15
+      end    
+      item
+        Name = 'INVENT_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 1
+      end    
+      item
+        Name = 'CODBARRA_E'
+        DataType = ftString
+        Precision = -1
+        Size = 16
+      end    
+      item
+        Name = 'Export'
+        DataType = ftString
+        Precision = -1
+        Size = 1
+      end    
+      item
+        Name = 'SubGrupo_es'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'AliIPI_es'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'PdPropria_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 1
+      end    
+      item
+        Name = 'IssQN_es'
+        DataType = ftString
+        Precision = -1
+        Size = 1
+      end    
+      item
+        Name = 'CstIPI_es'
+        DataType = ftString
+        Precision = -1
+        Size = 2
+      end    
+      item
+        Name = 'FinAnt_es'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'cfop_es'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'VERCONT_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 1
+      end    
+      item
+        Name = 'origem_es'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'tipo_es'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'CPMax_es'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'anp_es'
+        DataType = ftString
+        Precision = -1
+        Size = 9
+      end    
+      item
+        Name = 'freagr_es'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'stagr_es'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'diasem_es'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'genero_es'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'DIVISAO_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 3
+      end    
+      item
+        Name = 'SETOR_ES'
+        DataType = ftString
+        Precision = -1
+        Size = 4
+      end    
+      item
+        Name = 'codfor_es'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'finanb_es'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'predst_es'
+        DataType = ftFloat
+        Precision = -1
+      end>
+    Database = dbAccess
+    Transaction = SQLTransaction1
+    SQL.Strings = (
+      'select * from estoque order by alter_es desc'
+    )
+    Params = <>
+    UsePrimaryKeyAsKey = False
+    left = 240
+    top = 216
+  end
+  object DataSource4: TDataSource
+    DataSet = SQLEstoqueSyncTudo
+    left = 240
+    top = 328
+  end
+  object IdHTTP1: TIdHTTP
+    AllowCookies = True
+    ProxyParams.BasicAuthentication = False
+    ProxyParams.ProxyPort = 0
+    Request.ContentLength = -1
+    Request.ContentRangeEnd = -1
+    Request.ContentRangeStart = -1
+    Request.ContentRangeInstanceLength = -1
+    Request.Date = 0
+    Request.Expires = 0
+    Request.LastModified = 0
+    Request.Accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    Request.BasicAuthentication = False
+    Request.UserAgent = 'Mozilla/3.0 (compatible; Indy Library)'
+    Request.Ranges.Units = 'bytes'
+    Request.Ranges = <>
+    HTTPOptions = [hoForceEncodeParams]
+    left = 240
+    top = 104
+  end
+end

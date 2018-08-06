@@ -1,0 +1,2 @@
+http://embapel.minicommerce.com.br/api/stock_availables?ws_key=V3QI3RV337NWMD9AJ7H8EX24ZC2FXK7G
+HTTP/1.1 400 Bad Request
